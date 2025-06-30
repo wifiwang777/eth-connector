@@ -153,13 +153,6 @@ func TestTransferFrom(t *testing.T) {
 		return
 	}
 
-	bytes, err := tx.MarshalJSON()
-	if err != nil {
-		t.Error(err)
-		return
-	}
-	t.Logf("tx detail: %s", bytes)
-
 	hexKey := "YOUR_PRIVATE_KEY"
 	privateKey, err := crypto.HexToECDSA(hexKey)
 	signedTx, err := erc20.SignTx(tx, privateKey)
