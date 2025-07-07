@@ -20,9 +20,9 @@ func NewErc20(e *Ethereum) *Erc20 {
 }
 
 func (e *Erc20) BalanceOf(contractAddress, account common.Address) (*big.Int, error) {
-	transferFnSignature := []byte("balanceOf(address)")
+	methodSignature := []byte("balanceOf(address)")
 	keccak256 := sha3.NewLegacyKeccak256()
-	keccak256.Write(transferFnSignature)
+	keccak256.Write(methodSignature)
 	methodId := keccak256.Sum(nil)[:4]
 
 	var data []byte
@@ -43,9 +43,9 @@ func (e *Erc20) BalanceOf(contractAddress, account common.Address) (*big.Int, er
 }
 
 func (e *Erc20) Transfer(contractAddress, from, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	transferFnSignature := []byte("transfer(address,uint256)")
+	methodSignature := []byte("transfer(address,uint256)")
 	erc20hash := sha3.NewLegacyKeccak256()
-	erc20hash.Write(transferFnSignature)
+	erc20hash.Write(methodSignature)
 	methodId := erc20hash.Sum(nil)[:4]
 
 	var data []byte
@@ -80,9 +80,9 @@ func (e *Erc20) Approve(contractAddress, from, spender common.Address, amount *b
 }
 
 func (e *Erc20) Allowance(contractAddress, owner, spender common.Address) (*big.Int, error) {
-	transferFnSignature := []byte("allowance(address,address)")
+	methodSignature := []byte("allowance(address,address)")
 	keccak256 := sha3.NewLegacyKeccak256()
-	keccak256.Write(transferFnSignature)
+	keccak256.Write(methodSignature)
 	methodId := keccak256.Sum(nil)[:4]
 
 	var data []byte
@@ -103,9 +103,9 @@ func (e *Erc20) Allowance(contractAddress, owner, spender common.Address) (*big.
 }
 
 func (e *Erc20) TransferFrom(contractAddress, from, sender, receiver common.Address, amount *big.Int) (*types.Transaction, error) {
-	transferFnSignature := []byte("transferFrom(address,address,uint256)")
+	methodSignature := []byte("transferFrom(address,address,uint256)")
 	erc20hash := sha3.NewLegacyKeccak256()
-	erc20hash.Write(transferFnSignature)
+	erc20hash.Write(methodSignature)
 	methodId := erc20hash.Sum(nil)[:4]
 
 	var data []byte
