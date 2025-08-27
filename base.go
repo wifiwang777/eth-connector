@@ -4,12 +4,13 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"errors"
+	"math/big"
+
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"math/big"
 )
 
 type Ethereum struct {
@@ -42,7 +43,7 @@ func (e *Ethereum) NewTx(from, to common.Address, value *big.Int, data []byte) (
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// maxPriorityFeePerGas
 	gasTipCap, err := e.client.SuggestGasTipCap(context.Background())
 	if err != nil {

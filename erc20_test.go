@@ -2,11 +2,12 @@ package eth_connector
 
 import (
 	"context"
+	"math/big"
+	"testing"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
-	"math/big"
-	"testing"
 )
 
 const (
@@ -15,6 +16,8 @@ const (
 
 	USDTContractAddressMainnet = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
 	USDTContractAddressHolesky = "0xb27e39Fb20333aC358E7fB37a9994F44f1a7F66B"
+	USDCContractAddressMainnet = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+	USDCContractAddressHolesky = "0xB6Fd173B7d71fae7413A7Aa880d4cbD57d29908D"
 )
 
 func TestBalance(t *testing.T) {
@@ -42,10 +45,10 @@ func TestTransfer(t *testing.T) {
 	}
 	erc20 := NewErc20(NewEthereum(client))
 
-	contractAddress := common.HexToAddress(USDTContractAddressHolesky)
+	contractAddress := common.HexToAddress(USDCContractAddressHolesky)
 	decimal := int64(18)
 
-	from := common.HexToAddress("0x38c108CEbf53edD0B025D6390fF7Eb473d98bAbE")
+	from := common.HexToAddress("0x94b6D081b604953FE0720046d4D8023291A91656")
 	to := common.HexToAddress("0x646D15cCC9157EE02a51747a6fd5D8B914F655F0")
 	amount := big.NewInt(100)
 	precision := new(big.Int).Exp(big.NewInt(10), big.NewInt(decimal), nil)
